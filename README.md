@@ -1,4 +1,6 @@
-This is the repo of my solution to the Probability Calculator project from the Scientific Computing with Python course from freeCodeCamp.
+## English description
+
+This is the repo of my solution to the *Probability Calculator* project from the **Scientific Computing with Python** course from freeCodeCamp. Portuguese description down below.
 
 ### Assignment
 
@@ -52,3 +54,63 @@ The unit tests for this project are in `test_module.py`. We imported the tests f
 ### Submitting
 
 Copy your project's URL and submit it to freeCodeCamp.
+
+--------------------------------------------------------------------------
+
+## Descrição em português
+
+Esse é o repositório com a minha solução para o projeto *Probability Calculator* do curso **Scientific Computing with Python** do freeCodeCamp. A tradução é livre e feita por mim.
+
+### Tarefa
+
+Suponha que um chapéu contém 5 bolas azuis, 4 vermelhas e 2 verdes. Qual a probabilidade de quê uma retirada aleatória e sem reposição de 4 bolas contenha pelo menos 1 vermelha e 2 verdes? Apesar de ser possível calcular essa probabilidade à mão usando matemática, uma maneira mais fácil é escrevendo um programa para realizar um grande número de experimentos e estimar a probabilidade.
+
+Para esse projeto, você escreverá um programa que determina a probabilidade aproximada de retirar certas bolas randomicamente de um chapéu.
+
+Primeiro, crie uma classe `Hat` em `prob_calculator.py`. A classe deve receber um número variável de argumentos que especificam o número de bolas de cada cor que estão no chapéu. Por exemplo, um objeto da classe pode ser criado de qualquer uma dessas maneiras:
+
+```
+hat1 = Hat(yellow=3, blue=2, green=6)
+hat2 = Hat(red=5, orange=4)
+hat3 = Hat(red=5, orange=4, black=1, blue=0, pink=2, striped=9)
+```
+
+Um chapéu sempre será criado com pelo menos uma bola. Os argumentos passados no objeto hat na criação devem ser convertidos em uma variável de instância `contents`, que deve ser uma lista de strings contendo um item para cada bola no chapéu. Cada item na lista deve ser um nome de uma cor representando uma única bola daquela cor. Por exemplo, se o seu chapéu é `{"red": 2, "blue": 1}`, `contents` deve ser `["red", "red", "blue"]`.
+
+A classe `Hat` deve ter um método `draw` que recebe um argumento indicando o número de bolas a serem retiradas do chapéu. Esse método deve remover bolas aleatoriamente de `contents` e retorná-las como uma lista de strings. As bolas não devem voltar para o chapéu durante a retirada. Se o número de bolas a retirar for maior que a quantidade disponível, retorne todas as bolas.
+
+Em seguida, crie uma função `experiment` em `prob_calculator.py` (fora da classe `Hat`). Essa função deve receber os seguintes argumentos:
+* `hat`: um objeto hat contendo bolas que devem ser copiadas dentro da função.
+* `expected_balls`: um objeto indicando o grupo exato de bolas a se tentar retirar do chapéu para o experimento. Por exemplo, para determinar a probabilidade de retirar 2 bolas azuis e 1 vermelha do chapéu, atribua a `expected_balls` o dicionário `{"blue":2, "red":1}`.
+* `num_balls_drawn`: o número de bolas a se retirar do chapéu em cada experimento.
+* `num_experiments`: o número de experimentos a realizar (quanto mais experimentos, mais acurada a probabilidade aproximada).
+
+A função `experiment` deve retornar uma probabilidade. 
+
+Por exemplo, digamos que queremos determinar a probabilidade de retirar pelo menos 2 bolas vermelhas e 1 verde quando retiramos 5 bolas de um chapéu contendo 6 pretas, 4 vermelhas e 3 verdes. Para tanto, performamos `N` experimentos, contamos quantas vezes `M` conseguimos o resultado desejado e estimamos a probabilidade em `M/N`. Cada experimento consiste em começar com um chapéu contendo as bolas espeficicadas, retirar o número de bolsa e checar se conseguimos o resultado desejado.
+
+Aqui está um exemplo de chamada da função `experiment` baseado no exemplo acima com 2000 experimentos:
+
+```
+hat = Hat(black=6, red=4, green=3)
+probability = experiment(hat=hat, 
+                  expected_balls={"red":2,"green":1},
+                  num_balls_drawn=5,
+                  num_experiments=2000)
+```
+
+Como isso é baseado em retiradas aleatórias, a probabilidade será levemente diferente cada vez que o código rodar.
+
+*Dica: considere usar os módulos que já foram importados em `prob_calculator.py`.*
+
+### Desenvolvimento
+
+Escreve seu código em `prob_calculator.py`. Para desenvolvimento, use `main.py` para testar o código. Clique em "run" `main.py` rodará.
+
+### Testando 
+
+Os testes unitários para este projeto estão em `test_module.py`. Importamos os testes de `test_module.py` para `main.py` por conveniência. Os teste vão rodar automaticamente quando clicar em "run".
+
+### Submissão
+
+Copie a URL do projeto e submeta-a ao freeCodeCamp.
